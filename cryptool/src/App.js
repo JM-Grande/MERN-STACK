@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./index.css";
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
+import { Box } from "@mui/material";
+
+//mui theme
+import getDesignTokens from "./theme/getDesignTokens";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 function App() {
+  // const theme = useTheme();
+  const [mode, setMode] = useState("light");
+
+  const darkModeTheme = createTheme(getDesignTokens(mode));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkModeTheme}>
+      <Box pl="2em" pr="2em" bgcolor="background.default">
+        <Navbar mode={mode} setMode={setMode} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Box>
+    </ThemeProvider>
   );
 }
 
