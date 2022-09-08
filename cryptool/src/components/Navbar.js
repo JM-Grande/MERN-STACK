@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Stack, styled } from "@mui/material";
+import { Button, Stack, styled, Switch } from "@mui/material";
 
 const MainStack = styled(Stack)({
   flexDirection: "row",
@@ -7,21 +7,24 @@ const MainStack = styled(Stack)({
   alignItems: "center",
 });
 
-const Navbar = () => {
+const Navbar = ({ mode, setMode }) => {
   return (
     <>
-      <MainStack>
+      <MainStack sx={{ color: "text.primary" }}>
         <h1>CrypTools</h1>
-
         <Stack flexDirection="row">
           <span>Cryptocurrencies</span>
           <span>Exchanges</span>
           <span>News</span>
         </Stack>
-
         <Stack flexDirection="row" alignItems="center">
+          <Switch
+            onClick={() => {
+              setMode(mode === "light" ? "dark" : "light");
+            }}
+          />
           <span>Log In</span>
-          <Button>Sign Up</Button>
+          <Button variant="contained">Sign Up</Button>
         </Stack>
       </MainStack>
     </>
