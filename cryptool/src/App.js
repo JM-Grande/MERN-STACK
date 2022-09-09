@@ -10,7 +10,6 @@ import getDesignTokens from "./theme/getDesignTokens";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 function App() {
-  // const theme = useTheme();
   const [mode, setMode] = useState("light");
 
   const darkModeTheme = createTheme(getDesignTokens(mode));
